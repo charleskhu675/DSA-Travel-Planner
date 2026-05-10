@@ -36,12 +36,14 @@ class TravelPlanner {
         void addCity() {
             string name;
             int x, y;
+            cout << endl << "----------------------------------------------" << endl;
             cout << endl << "Enter city name: ";
             cin >> name;
             cout << endl << "Enter X coordinate: ";
             cin >> x;
             cout << endl << "Enter Y coordinate: ";
             cin >> y;
+            cout << endl << "----------------------------------------------" << endl;
 
             cities.push_back({name, x, y});
             adjList.push_back({});
@@ -56,10 +58,13 @@ class TravelPlanner {
             }
 
             int from, to;
+            displayCities();
+            cout << endl << "----------------------------------------------" << endl;
             cout << endl << "Enter start city ID: ";
             cin >> from;
             cout << endl << "Enter destination city ID: ";
             cin >> to;
+            cout << endl << "----------------------------------------------" << endl;
 
             if (from >= 0 && from < cities.size() && to >= 0 && to < cities.size()) {
                 double weight = sqrt(pow(cities[from].x - cities[to].x, 2) + pow(cities[from].y - cities[to].y, 2));
@@ -73,19 +78,23 @@ class TravelPlanner {
 
         void displayCities() {
             cout << endl << "Cities:" << endl;
+            cout << endl << "----------------------------------------------" << endl << endl;
             for (size_t i = 0; i < cities.size(); i++) {
                 cout << "ID: [" << i << "], Name: " << cities[i].name << ", Coordinates: (" << cities[i].x << ", " << cities[i].y << ")" << endl;
             }
+            cout << endl << "----------------------------------------------" << endl;
         }
 
         void displayRoutes() {
             cout << endl << "Routes:" << endl;
+            cout << endl << "----------------------------------------------" << endl << endl;
             for (size_t i = 0; i < adjList.size(); i++) {
                 cout << "City ID [" << i << "] routes:" << endl;
                 for (const auto& edge : adjList[i]) {
                     cout << "  To City ID [" << edge.to << "], Distance: " << edge.weight << endl;
                 }
             }
+            cout << endl << "----------------------------------------------" << endl;
         }
 
         void findShortestPath() {
@@ -128,9 +137,11 @@ class TravelPlanner {
 
                 if (dist[end] == INF) {
                     cout << endl << "No path found between the selected cities." << endl;
+                    cout << endl << "----------------------------------------------" << endl;
                 } else {
                     cout << endl << "Shortest distance: " << dist[end] << endl;
-                    
+                    cout << endl << "----------------------------------------------" << endl;
+
                     stack<int> path;
                     for (int at = end; at != -1; at = prev[at]) {
                         path.push(at);
@@ -151,13 +162,15 @@ class TravelPlanner {
         void displayMenu() {
             int choice = 0;
             while (choice != 5) {
+                cout << endl << endl << "----------------------------------------------" << endl;
                 cout << endl << "Travel Planner Menu:" << endl;
                 cout << "1. Add City" << endl;
                 cout << "2. Add Route" << endl;
                 cout << "3. Display Cities and Routes" << endl;
                 cout << "4. Find Shortest Path" << endl;
                 cout << "5. Exit" << endl;
-                cout << "Enter your choice: ";
+                cout << endl << "----------------------------------------------" << endl;
+                cout << endl << "Enter your choice: ";
                 cin >> choice;
 
                 switch (choice) {
